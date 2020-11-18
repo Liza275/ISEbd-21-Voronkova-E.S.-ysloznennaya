@@ -47,8 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BombsEnum.cs" />
+    <Compile Include="BombsForm.cs" />
     <Compile Include="Direction.cs" />
-    <Compile Include="DrawingBombs.cs" />
+    <Compile Include="DrawingBombsContainer.cs" />
+    <Compile Include="DrawingEllipseBombs.cs" />
+    <Compile Include="DrawingTriangleBombs.cs" />
     <Compile Include="Fighter.cs" />
     <Compile Include="FormFighter.cs">
       <SubType>Form</SubType>
@@ -56,8 +59,12 @@
     <Compile Include="FormFighter.Designer.cs">
       <DependentUpon>FormFighter.cs</DependentUpon>
     </Compile>
+    <Compile Include="IDrawingElements.cs" />
+    <Compile Include="IFlyingTransport.cs" />
+    <Compile Include="Plane.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Warplane.cs" />
     <EmbeddedResource Include="FormFighter.resx">
       <DependentUpon>FormFighter.cs</DependentUpon>
     </EmbeddedResource>

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsPlaneUsl
 {
-    public enum BombsEnum
+    public enum BombsForm
     {
-        Two = 2,
-        Four = 4,
-        Six = 6
+        TRIANGLE,
+        ELLIPSE,
+        CONTAINER
     }
 }
