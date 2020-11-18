@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsPlaneUsl
 {
-    public class DrawingBombs
+    public class DrawingTriangleBombs : IDrawingElements
     {
         private BombsEnum bombsEnum = BombsEnum.Two;
         public int Digit
@@ -33,7 +33,7 @@ namespace WindowsFormsPlaneUsl
             }
         }
 
-        public DrawingBombs(int digit)
+        public DrawingTriangleBombs(int digit)
         {
             Digit = digit;
         }
@@ -79,6 +79,7 @@ namespace WindowsFormsPlaneUsl
             downRocket2[2].X = _startPosX + 58;
             downRocket2[2].Y = _startPosY + 30;
             g.FillPolygon(dopBrush, downRocket2);
+
         }
 
         private void drawSixBombs(Graphics g, Color DopColor, float _startPosX, float _startPosY)
@@ -103,7 +104,8 @@ namespace WindowsFormsPlaneUsl
             g.FillPolygon(dopBrush, downRocket2);
         }
 
-        public void drawBombs(Graphics g, Color DopColor, float _startPosX, float _startPosY)
+
+        public void drawDopElements(Graphics g, Color DopColor, float _startPosX, float _startPosY)
         {
             Brush dopBrush = new SolidBrush(DopColor);
             switch (bombsEnum)
@@ -117,6 +119,7 @@ namespace WindowsFormsPlaneUsl
                 case BombsEnum.Two:
                     drawTwoBombs(g, DopColor, _startPosX, _startPosY);
                     break;
+
             }
         }
     }
