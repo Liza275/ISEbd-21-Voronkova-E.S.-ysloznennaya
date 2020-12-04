@@ -7,70 +7,78 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsPlaneUsl
 {
-    public class Airport<T,R> where T : class,IFlyingTransport where R : IDrawingElements
+    public class Airport<T, R> where T : class, IFlyingTransport where R : IDrawingElements
     {
-        private readonly T[] _places;
+        private readonly List<T> _places;
         private readonly int pictureWidth;
         private readonly int pictureHeight;
-        private readonly int _placeSizeWidth = 210;
-        private readonly int _placeSizeHeight = 125;
+        private readonly int _maxCount;
+        private readonly int _placeSizeWidth = 215;
+        private readonly int _placeSizeHeight = 137;
+        private readonly int placesInRow;
+
 
         public Airport(int picWidht, int picHeight)
         {
             int widht = picWidht / _placeSizeWidth;
             int height = picHeight / _placeSizeHeight;
-            _places = new T[widht * height];
+            placesInRow = height;
+            _maxCount = widht * height;
+            _places = new List<T>();
             pictureWidth = picWidht;
             pictureHeight = picHeight;
         }
 
-        public static bool operator +(Airport<T,R> p, T plane)
+        public T this[int ind]
         {
-            for (int i = 0; i < p._places.Length; i++)
+            get
             {
-                if (p._places[i] == null)
+                if (ind >= 0 && ind < _places.Count)
                 {
-                    p._places[i] = plane;
-                    if (i > (p._places.Length / 2) - 1)
-                    {
-                        plane.SetPosition(p._placeSizeWidth, (i - (p._places.Length / 2)) * p._placeSizeHeight + p._placeSizeHeight / 2, 1000, 1000);
-                    }
-                    else
-                    {
-                        plane.SetPosition(0, i * p._placeSizeHeight + p._placeSizeHeight / 2, 1000, 1000);
-                    }
-                    return true;
+                    return _places.ElementAt(ind);
                 }
+                return null;
             }
-            return false;
+        }
+        public static bool operator +(Airport<T, R> p, T plane)
+        {
+            if (p._places.Count >= p._maxCount)
+            {
+                return false;
+            }
+            p._places.Add(plane);
+            return true;
         }
 
-        public static T operator -(Airport<T,R> p, int index)
+        public static T operator -(Airport<T, R> p, int index)
         {
-            if (index >= p._places.Length || index < 0)
+            if (index < -1 || index > p._places.Count)
             {
                 return null;
             }
-            T result = p._places[index];
-            p._places[index] = null;
-            return result;
+            T plane = p._places[index];
+            p._places.RemoveAt(index);
+            return plane;
         }
 
-        public static bool operator >(Airport<T,R> airport1,Airport<T,R> airport2)
+        public static bool operator >(Airport<T, R> airport1, Airport<T, R> airport2)
         {
-            return airport1._places.Length > airport2._places.Length;
+            return airport1._places.Count > airport2._places.Count;
         }
 
         public static bool operator <(Airport<T, R> airport1, Airport<T, R> airport2)
         {
-            return airport1._places.Length < airport2._places.Length;
+            return airport1._places.Count < airport2._places.Count;
         }
 
         public void Draw(Graphics g)
         {
             DrawMarking(g);
-            for (int i = 0; i < _places.Length; i++)
+            for (int i = 0; i < _places.Count; i++)
             {
+                int x = (i / placesInRow) * _placeSizeWidth;
+                int y = (i - placesInRow * (i / placesInRow)) * _placeSizeHeight + (_placeSizeHeight - 5) / 2;
+                _places[i]?.SetPosition(x + 5, y + 5, pictureWidth, pictureHeight);
                 _places[i]?.DrawTransport(g);
             }
         }

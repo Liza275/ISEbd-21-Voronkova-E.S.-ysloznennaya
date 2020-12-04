@@ -103,6 +103,8 @@ namespace WindowsFormsPlaneUsl
             downRocket2[2].Y = _startPosY + 40;
             g.FillPolygon(dopBrush, downRocket2);
         }
+
+
         public void drawDopElements(Graphics g, Color DopColor, float _startPosX, float _startPosY)
         {
             Brush dopBrush = new SolidBrush(DopColor);
