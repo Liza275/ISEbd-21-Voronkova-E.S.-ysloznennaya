@@ -16,7 +16,7 @@ namespace WindowsFormsPlaneUsl
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormFighter());
+            Application.Run(new FormAirport());
         }
     }
 }

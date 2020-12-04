@@ -29,6 +29,12 @@ namespace WindowsFormsPlaneUsl
             pictureBoxfighter.Image = bmp;
         }
 
+        public void SetWarplane(IFlyingTransport warplane)
+        {
+            this.warplane = warplane;
+            Draw();
+        }
+
 
         private void ButtonCreate_Click(object sender, EventArgs e)
         {
