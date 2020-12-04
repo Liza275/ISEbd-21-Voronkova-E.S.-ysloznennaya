@@ -34,7 +34,6 @@ namespace WindowsFormsPlaneUsl
             isEngines = IsEngines;
             isRockets = IsRockets;
         }
-
         public override void DrawTransport(Graphics g)
         {
             Brush dopBrush = new SolidBrush(DopColor);

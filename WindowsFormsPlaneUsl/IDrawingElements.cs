@@ -10,7 +10,6 @@ namespace WindowsFormsPlaneUsl
     public interface IDrawingElements
     {
         int Digit { set; get; }
-
         void drawDopElements(Graphics g, Color DopColor, float _startPosX, float _startPosY);
     }
 }

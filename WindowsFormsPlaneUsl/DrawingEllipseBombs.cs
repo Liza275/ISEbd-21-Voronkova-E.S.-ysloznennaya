@@ -60,8 +60,6 @@ namespace WindowsFormsPlaneUsl
             g.FillEllipse(dopBrush, _startPosX + 56, _startPosY - 40, 16, 8);
             g.FillEllipse(dopBrush, _startPosX + 56, _startPosY + 32, 16, 8);
         }
-
-
         public void drawDopElements(Graphics g, Color DopColor, float _startPosX, float _startPosY)
         {
             Brush dopBrush = new SolidBrush(DopColor);
@@ -76,7 +74,6 @@ namespace WindowsFormsPlaneUsl
                 case BombsEnum.Two:
                     drawTwoBombs(g, DopColor, _startPosX, _startPosY);
                     break;
-
             }
         }
     }
