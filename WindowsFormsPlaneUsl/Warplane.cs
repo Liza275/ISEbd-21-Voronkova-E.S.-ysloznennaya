@@ -13,6 +13,7 @@ namespace WindowsFormsPlaneUsl
 
         protected readonly int warplaneHeight = 128;
 
+        protected readonly char separator = ';';
         public Warplane(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
@@ -29,6 +30,17 @@ namespace WindowsFormsPlaneUsl
             this.warplaneWidth = warplaneWidth;
             this.warplaneHeight = warplaneHeight;
         }
+
+        public Warplane(string info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 3)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+            }
+        }
 
         public override void MoveTransport(Direction direction)
         {
@@ -113,6 +125,12 @@ namespace WindowsFormsPlaneUsl
             upSmallWing[2].Y = _startPosY - 8;
             g.FillPolygon(mainBrush, upSmallWing);
             g.FillEllipse(new SolidBrush(Color.Blue), _startPosX + 28, _startPosY - 6, 16, 12);
+
+        }
+
+        public override string ToString()
+        {
+            return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
         }
     }
 }

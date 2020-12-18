@@ -11,6 +11,9 @@ namespace WindowsFormsPlaneUsl
     {
 
         private BombsEnum bombsEnum = BombsEnum.Two;
+
+        public BombsForm BombsForm { get; }
+
         public int Digit
         {
             set
@@ -30,12 +33,13 @@ namespace WindowsFormsPlaneUsl
             }
             get
             {
-                return Digit;
+                return (int)bombsEnum;
             }
         }
 
         public DrawingBombsContainer(int digit)
         {
+            BombsForm = BombsForm.CONTAINER;
             Digit = digit;
         }
 

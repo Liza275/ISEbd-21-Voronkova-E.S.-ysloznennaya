@@ -10,6 +10,9 @@ namespace WindowsFormsPlaneUsl
     public class DrawingEllipseBombs : IDrawingElements
     {
         private BombsEnum bombsEnum = BombsEnum.Two;
+
+        public BombsForm BombsForm { get; }
+
         public int Digit
         {
             set
@@ -29,12 +32,13 @@ namespace WindowsFormsPlaneUsl
             }
             get
             {
-                return Digit;
+                return (int)bombsEnum;
             }
         }
 
         public DrawingEllipseBombs(int digit)
         {
+            BombsForm = BombsForm.ELLIPSE;
             Digit = digit;
         }
 
