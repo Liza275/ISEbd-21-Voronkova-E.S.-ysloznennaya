@@ -40,6 +40,8 @@ namespace WindowsFormsPlaneUsl
                 return null;
             }
         }
+
+
         public static bool operator +(Airport<T, R> p, T plane)
         {
             if (p._places.Count >= p._maxCount)
@@ -71,6 +73,7 @@ namespace WindowsFormsPlaneUsl
             return airport1._places.Count < airport2._places.Count;
         }
 
+        //отрисовка парковки
         public void Draw(Graphics g)
         {
             DrawMarking(g);
