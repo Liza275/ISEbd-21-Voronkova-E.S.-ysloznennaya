@@ -10,6 +10,9 @@ namespace WindowsFormsPlaneUsl
     public class DrawingTriangleBombs : IDrawingElements
     {
         private BombsEnum bombsEnum = BombsEnum.Two;
+
+        public BombsForm BombsForm { get; }
+
         public int Digit
         {
             set
@@ -29,12 +32,13 @@ namespace WindowsFormsPlaneUsl
             }
             get
             {
-                return Digit;
+                return (int)bombsEnum;
             }
         }
 
         public DrawingTriangleBombs(int digit)
         {
+            BombsForm = BombsForm.TRIANGLE;
             Digit = digit;
         }
 
@@ -103,7 +107,6 @@ namespace WindowsFormsPlaneUsl
             downRocket2[2].Y = _startPosY + 40;
             g.FillPolygon(dopBrush, downRocket2);
         }
-
 
         public void drawDopElements(Graphics g, Color DopColor, float _startPosX, float _startPosY)
         {

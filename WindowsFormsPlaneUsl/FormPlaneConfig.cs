@@ -50,7 +50,7 @@ namespace WindowsFormsPlaneUsl
             }
         }
 
-        private void LabelDopElements_MouseDown(object sender, MouseEventArgs e)//3
+        private void LabelDopElements_MouseDown(object sender, MouseEventArgs e)
         {
             IDrawingElements drawing = new DrawingTriangleBombs(2);
             Label label = (Label)sender;
@@ -96,7 +96,7 @@ namespace WindowsFormsPlaneUsl
             }
 
         }
-        private void Panelwarplane_DragDrop(object sender, DragEventArgs e)//2
+        private void Panelwarplane_DragDrop(object sender, DragEventArgs e)
         {
             IDrawingElements drawing = null;
             if (e.Data.GetDataPresent(typeof(DrawingBombsContainer)))
@@ -121,6 +121,10 @@ namespace WindowsFormsPlaneUsl
             }
             else
             {
+                if (!e.Data.GetDataPresent(DataFormats.Text))
+                {
+                    return;
+                }
                 switch (e.Data.GetData(DataFormats.Text).ToString())
                 {
                     case "Военный самолет":

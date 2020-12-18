@@ -41,7 +41,6 @@ namespace WindowsFormsPlaneUsl
             }
         }
 
-
         public static bool operator +(Airport<T, R> p, T plane)
         {
             if (p._places.Count >= p._maxCount)
@@ -99,6 +98,19 @@ namespace WindowsFormsPlaneUsl
                 g.DrawLine(pen, i * _placeSizeWidth, 0, i * _placeSizeWidth,
                (pictureHeight / _placeSizeHeight) * _placeSizeHeight);
             }
+        }
+
+        public T GetNext(int index)
+        {
+            if (index < 0 || index >= _places.Count)
+            {
+                return null;
+            }
+            return _places[index];
+        }
+        public void Clear()
+        {
+            _places.Clear();
         }
     }
 }
