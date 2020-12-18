@@ -9,7 +9,7 @@ namespace WindowsFormsPlaneUsl
 {
     public class Fighter : Warplane
     {
-        private IDrawingElements db;
+        public IDrawingElements db { set; get; }
         public Color DopColor { private set; get; }
         public bool isEngines { private set; get; }
 
@@ -48,6 +48,11 @@ namespace WindowsFormsPlaneUsl
                 g.FillRectangle(dopBrush, _startPosX + 104, _startPosY - 8, 9, 7);
                 g.FillRectangle(dopBrush, _startPosX + 104, _startPosY + 1, 9, 7);
             }
+        }
+
+        public void SetDopColor(Color color)
+        {
+            DopColor = color;
         }
     }
 }

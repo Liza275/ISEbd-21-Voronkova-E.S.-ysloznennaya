@@ -60,51 +60,6 @@ namespace WindowsFormsPlaneUsl
 
         }
 
-        private void buttonSetWarplane_Click(object sender, EventArgs e)
-        {
-            if (listBoxAiports.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    var warplane = new Warplane(100, 100, dialog.Color);
-                    if (airportCollection[listBoxAiports.SelectedItem.ToString()] + warplane)
-                    {
-                        Draw();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Парковка переполнена");
-                    }
-                }
-            }
-        }
-
-        private void buttonSetFighter_Click(object sender, EventArgs e)
-        {
-            if (listBoxAiports.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    ColorDialog dialogDop = new ColorDialog();
-                    if (dialogDop.ShowDialog() == DialogResult.OK)
-                    {
-                        var fighter = new Fighter(100, 100, dialog.Color, dialogDop.Color, true, true, 6, BombsForm.TRIANGLE);
-
-                        if (airportCollection[listBoxAiports.SelectedItem.ToString()] + fighter)
-                        {
-                            Draw();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Парковка переполнена");
-                        }
-                    }
-                }
-            }
-        }
-
         private void buttonTakePlane_Click(object sender, EventArgs e)
         {
             if (listBoxAiports.SelectedIndex > -1 && maskedTextBox.Text != "")
@@ -130,7 +85,7 @@ namespace WindowsFormsPlaneUsl
             }
         }
 
-        private void ListBoxParkings_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBoxAirports_SelectedIndexChanged(object sender, EventArgs e)
         {
             Draw();
         }
@@ -155,6 +110,28 @@ namespace WindowsFormsPlaneUsl
                 FormFighter form = new FormFighter();
                 form.SetWarplane(stack.Pop());
                 form.ShowDialog();
+            }
+        }
+
+        private void ButtonAddPlane_Click(object sender, EventArgs e)
+        {
+            var formPlaneConfig = new FormPlaneConfig();
+            formPlaneConfig.AddEvent(AddPlane);
+            formPlaneConfig.Show();
+        }
+
+        private void AddPlane(Plane plane)
+        {
+            if (plane != null && listBoxAiports.SelectedIndex > -1)
+            {
+                if ((airportCollection[listBoxAiports.SelectedItem.ToString()]) + plane)
+                {
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Транспорт не удалось поставить");
+                }
             }
         }
     }

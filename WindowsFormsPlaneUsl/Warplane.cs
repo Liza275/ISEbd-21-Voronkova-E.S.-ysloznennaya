@@ -113,7 +113,6 @@ namespace WindowsFormsPlaneUsl
             upSmallWing[2].Y = _startPosY - 8;
             g.FillPolygon(mainBrush, upSmallWing);
             g.FillEllipse(new SolidBrush(Color.Blue), _startPosX + 28, _startPosY - 6, 16, 12);
-
         }
     }
 }

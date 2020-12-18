@@ -28,58 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonSetWarplane = new System.Windows.Forms.Button();
-            this.buttonSetFighter = new System.Windows.Forms.Button();
-            this.groupBoxPlane = new System.Windows.Forms.GroupBox();
+            this.groupBox = new System.Windows.Forms.GroupBox();
             this.buttonTakePLane = new System.Windows.Forms.Button();
-            this.labelPlace = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.maskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.pictureBoxAirport = new System.Windows.Forms.PictureBox();
             this.listBoxAiports = new System.Windows.Forms.ListBox();
             this.textBoxNewLevelName = new System.Windows.Forms.TextBox();
-            this.labelAirport = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.buttonAddAirport = new System.Windows.Forms.Button();
             this.buttonDelAirport = new System.Windows.Forms.Button();
             this.buttonFly = new System.Windows.Forms.Button();
-            this.groupBoxPlane.SuspendLayout();
+            this.buttonAddPlane = new System.Windows.Forms.Button();
+            this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAirport)).BeginInit();
             this.SuspendLayout();
             // 
-            // buttonSetWarplane
+            // groupBox
             // 
-            this.buttonSetWarplane.Location = new System.Drawing.Point(763, 448);
-            this.buttonSetWarplane.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonSetWarplane.Name = "buttonSetWarplane";
-            this.buttonSetWarplane.Size = new System.Drawing.Size(165, 42);
-            this.buttonSetWarplane.TabIndex = 0;
-            this.buttonSetWarplane.Text = "Припарковать военный самолет";
-            this.buttonSetWarplane.UseVisualStyleBackColor = true;
-            this.buttonSetWarplane.Click += new System.EventHandler(this.buttonSetWarplane_Click);
-            // 
-            // buttonSetFighter
-            // 
-            this.buttonSetFighter.Location = new System.Drawing.Point(763, 495);
-            this.buttonSetFighter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonSetFighter.Name = "buttonSetFighter";
-            this.buttonSetFighter.Size = new System.Drawing.Size(165, 42);
-            this.buttonSetFighter.TabIndex = 1;
-            this.buttonSetFighter.Text = "Припарковать истребитель";
-            this.buttonSetFighter.UseVisualStyleBackColor = true;
-            this.buttonSetFighter.Click += new System.EventHandler(this.buttonSetFighter_Click);
-            // 
-            // groupBoxPlane
-            // 
-            this.groupBoxPlane.Controls.Add(this.buttonTakePLane);
-            this.groupBoxPlane.Controls.Add(this.labelPlace);
-            this.groupBoxPlane.Controls.Add(this.maskedTextBox);
-            this.groupBoxPlane.Location = new System.Drawing.Point(763, 553);
-            this.groupBoxPlane.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxPlane.Name = "groupBoxPlane";
-            this.groupBoxPlane.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxPlane.Size = new System.Drawing.Size(165, 100);
-            this.groupBoxPlane.TabIndex = 2;
-            this.groupBoxPlane.TabStop = false;
-            this.groupBoxPlane.Text = "Забрать самолет";
+            this.groupBox.Controls.Add(this.buttonTakePLane);
+            this.groupBox.Controls.Add(this.label1);
+            this.groupBox.Controls.Add(this.maskedTextBox);
+            this.groupBox.Location = new System.Drawing.Point(763, 553);
+            this.groupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox.Name = "groupBox";
+            this.groupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox.Size = new System.Drawing.Size(165, 100);
+            this.groupBox.TabIndex = 2;
+            this.groupBox.TabStop = false;
+            this.groupBox.Text = "Забрать самолет";
             // 
             // buttonTakePLane
             // 
@@ -92,14 +69,14 @@
             this.buttonTakePLane.UseVisualStyleBackColor = true;
             this.buttonTakePLane.Click += new System.EventHandler(this.buttonTakePlane_Click);
             // 
-            // labelPlace
+            // label1
             // 
-            this.labelPlace.AutoSize = true;
-            this.labelPlace.Location = new System.Drawing.Point(23, 39);
-            this.labelPlace.Name = "labelPlace";
-            this.labelPlace.Size = new System.Drawing.Size(49, 17);
-            this.labelPlace.TabIndex = 1;
-            this.labelPlace.Text = "Место";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 17);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Место";
             // 
             // maskedTextBox
             // 
@@ -130,7 +107,7 @@
             this.listBoxAiports.Name = "listBoxAiports";
             this.listBoxAiports.Size = new System.Drawing.Size(164, 116);
             this.listBoxAiports.TabIndex = 4;
-            this.listBoxAiports.SelectedIndexChanged += new System.EventHandler(this.ListBoxParkings_SelectedIndexChanged);
+            this.listBoxAiports.SelectedIndexChanged += new System.EventHandler(this.ListBoxAirports_SelectedIndexChanged);
             // 
             // textBoxNewLevelName
             // 
@@ -140,15 +117,15 @@
             this.textBoxNewLevelName.Size = new System.Drawing.Size(164, 22);
             this.textBoxNewLevelName.TabIndex = 5;
             // 
-            // labelAirport
+            // label2
             // 
-            this.labelAirport.AutoSize = true;
-            this.labelAirport.Location = new System.Drawing.Point(804, 23);
-            this.labelAirport.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelAirport.Name = "labelAirport";
-            this.labelAirport.Size = new System.Drawing.Size(81, 17);
-            this.labelAirport.TabIndex = 6;
-            this.labelAirport.Text = "Аэропорты";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(804, 23);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 17);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Аэропорты";
             // 
             // buttonAddAirport
             // 
@@ -174,36 +151,46 @@
             // 
             // buttonFly
             // 
-            this.buttonFly.Location = new System.Drawing.Point(763, 400);
+            this.buttonFly.Location = new System.Drawing.Point(764, 431);
             this.buttonFly.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonFly.Name = "buttonFly";
-            this.buttonFly.Size = new System.Drawing.Size(165, 42);
+            this.buttonFly.Size = new System.Drawing.Size(165, 55);
             this.buttonFly.TabIndex = 10;
             this.buttonFly.Text = "Полетать";
             this.buttonFly.UseVisualStyleBackColor = true;
             this.buttonFly.Click += new System.EventHandler(this.ButtonFly_Click);
+            // 
+            // buttonAddPlane
+            // 
+            this.buttonAddPlane.Location = new System.Drawing.Point(764, 492);
+            this.buttonAddPlane.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonAddPlane.Name = "buttonAddPlane";
+            this.buttonAddPlane.Size = new System.Drawing.Size(165, 55);
+            this.buttonAddPlane.TabIndex = 11;
+            this.buttonAddPlane.Text = "Добавить самолет";
+            this.buttonAddPlane.UseVisualStyleBackColor = true;
+            this.buttonAddPlane.Click += new System.EventHandler(this.ButtonAddPlane_Click);
             // 
             // FormAirport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(945, 666);
+            this.Controls.Add(this.buttonAddPlane);
             this.Controls.Add(this.buttonFly);
             this.Controls.Add(this.buttonDelAirport);
             this.Controls.Add(this.buttonAddAirport);
-            this.Controls.Add(this.labelAirport);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxNewLevelName);
             this.Controls.Add(this.listBoxAiports);
             this.Controls.Add(this.pictureBoxAirport);
-            this.Controls.Add(this.groupBoxPlane);
-            this.Controls.Add(this.buttonSetFighter);
-            this.Controls.Add(this.buttonSetWarplane);
+            this.Controls.Add(this.groupBox);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormAirport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAirport";
-            this.groupBoxPlane.ResumeLayout(false);
-            this.groupBoxPlane.PerformLayout();
+            this.groupBox.ResumeLayout(false);
+            this.groupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAirport)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -211,19 +198,17 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button buttonSetWarplane;
-        private System.Windows.Forms.Button buttonSetFighter;
-        private System.Windows.Forms.GroupBox groupBoxPlane;
+        private System.Windows.Forms.GroupBox groupBox;
         private System.Windows.Forms.Button buttonTakePLane;
-        private System.Windows.Forms.Label labelPlace;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox maskedTextBox;
         private System.Windows.Forms.PictureBox pictureBoxAirport;
         private System.Windows.Forms.ListBox listBoxAiports;
         private System.Windows.Forms.TextBox textBoxNewLevelName;
-        private System.Windows.Forms.Label labelAirport;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonAddAirport;
         private System.Windows.Forms.Button buttonDelAirport;
         private System.Windows.Forms.Button buttonFly;
+        private System.Windows.Forms.Button buttonAddPlane;
     }
 }

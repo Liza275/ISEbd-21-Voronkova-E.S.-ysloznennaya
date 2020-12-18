@@ -67,6 +67,12 @@
     <Compile Include="FormFighter.Designer.cs">
       <DependentUpon>FormFighter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPlaneConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPlaneConfig.designer.cs">
+      <DependentUpon>FormPlaneConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="IDrawingElements.cs" />
     <Compile Include="IFlyingTransport.cs" />
     <Compile Include="Plane.cs" />
@@ -78,6 +84,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFighter.resx">
       <DependentUpon>FormFighter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPlaneConfig.resx">
+      <DependentUpon>FormPlaneConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
