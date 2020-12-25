@@ -65,7 +65,7 @@ namespace WindowsFormsPlaneUsl
             }
         }
 
-        public bool SaveData(string filename)
+        public void SaveData(string filename)
         {
             if (File.Exists(filename))
             {
@@ -77,14 +77,13 @@ namespace WindowsFormsPlaneUsl
                 foreach (var level in parkingStages)
                 {
                     sw.WriteLine($"Airport{separator}{level.Key}");
-                    IFlyingTransport plane = null;
-                    for (int i = 0; (plane = level.Value.GetNext(i)) != null; i++)
+                    foreach (IFlyingTransport plane in level.Value)
                     {
                         if (plane != null)
                         {
-                            if (plane.GetType().Name == "Warplane")
+                            if (plane.GetType().Name == "WarPlane")
                             {
-                                sw.Write($"Warplane{separator}");
+                                sw.Write($"WarPlane{separator}");
                             }
                             if (plane.GetType().Name == "Fighter")
                             {
@@ -95,7 +94,6 @@ namespace WindowsFormsPlaneUsl
                     }
                 }
             }
-            return true;
         }
 
         public void LoadData(string filename)

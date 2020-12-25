@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsPlaneUsl
 {
-    public class Airport<T, R> where T : class, IFlyingTransport where R : IDrawingElements
+    public class Airport<T, R> : IEnumerator<T>, IEnumerable<T>  where T : class, IFlyingTransport where R : IDrawingElements
     {
         private readonly List<T> _places;
         private readonly int pictureWidth;
@@ -16,7 +17,9 @@ namespace WindowsFormsPlaneUsl
         private readonly int _placeSizeWidth = 215;
         private readonly int _placeSizeHeight = 137;
         private readonly int placesInRow;
-
+        private int _currentIndex;
+        public T Current => _places[_currentIndex];
+        object IEnumerator.Current => _places[_currentIndex];
 
         public Airport(int picWidht, int picHeight)
         {
@@ -27,6 +30,7 @@ namespace WindowsFormsPlaneUsl
             _places = new List<T>();
             pictureWidth = picWidht;
             pictureHeight = picHeight;
+            _currentIndex = -1;
         }
 
         public T this[int ind]
@@ -47,6 +51,10 @@ namespace WindowsFormsPlaneUsl
             if (p._places.Count >= p._maxCount)
             {
                 throw new AirportOverflowException();
+            }
+            if (p._places.Contains(plane))
+            {
+                throw new AirportAlreadyHaveException();
             }
             p._places.Add(plane);
             return true;
@@ -108,7 +116,32 @@ namespace WindowsFormsPlaneUsl
                 return null;
             }
             return _places[index];
-        }
+        }        public void Sort() => _places.Sort((IComparer<T>)new PlaneComparer());
+
+        public void Dispose()
+        {
+        }
+
+        public bool MoveNext()
+        {
+            _currentIndex++;
+            return (_currentIndex < _places.Count);
+        }
+
+        public void Reset()
+        {
+            _currentIndex = -1;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this;
+        }
         public void Clear()
         {
             _places.Clear();
