@@ -4,21 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Collections;
 
 namespace WindowsFormsPlaneUsl
 {
-    public class Warplane : Plane
+    public class Warplane : Plane, IComparable<Warplane>, IEnumerable<object>, IEnumerator<object>
     {
+        private List<object> properties = new List<object>();
+
         protected readonly int warplaneWidth = 113;
 
         protected readonly int warplaneHeight = 128;
 
-        protected readonly char separator = ';';
+        protected readonly char separator = ';';        protected int _currentIndex = -1;        public object Current => properties.ElementAt(_currentIndex);        object IEnumerator.Current => properties.ElementAt(_currentIndex);
         public Warplane(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
+            properties.Add(MaxSpeed);
+            properties.Add(Weight);
+            properties.Add(MainColor);
+            properties.Add(warplaneWidth);
+            properties.Add(warplaneHeight);
         }
 
         protected Warplane(int maxSpeed, float weight, Color mainColor, int warplaneWidth, int
@@ -29,6 +37,11 @@ namespace WindowsFormsPlaneUsl
             MainColor = mainColor;
             this.warplaneWidth = warplaneWidth;
             this.warplaneHeight = warplaneHeight;
+            properties.Add(MaxSpeed);
+            properties.Add(Weight);
+            properties.Add(MainColor);
+            properties.Add(warplaneWidth);
+            properties.Add(warplaneHeight);
         }
 
         public Warplane(string info)
@@ -39,8 +52,13 @@ namespace WindowsFormsPlaneUsl
                 MaxSpeed = Convert.ToInt32(strs[0]);
                 Weight = Convert.ToInt32(strs[1]);
                 MainColor = Color.FromName(strs[2]);
+                properties.Add(MaxSpeed);
+                properties.Add(Weight);
+                properties.Add(MainColor);
+                properties.Add(warplaneWidth);
+                properties.Add(warplaneHeight);
             }
-        }
+        }
 
         public override void MoveTransport(Direction direction)
         {
@@ -131,6 +149,88 @@ namespace WindowsFormsPlaneUsl
         public override string ToString()
         {
             return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
+        }
+        public bool Equals(Warplane other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            return true;
+        }
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Warplane warplaneObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(warplaneObj);
+            }
+        }
+
+        public int CompareTo(Warplane other)
+        {
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return MaxSpeed.CompareTo(other.MaxSpeed);
+            }
+            if (Weight != other.Weight)
+            {
+                return Weight.CompareTo(other.Weight);
+            }
+            if (MainColor != other.MainColor)
+            {
+                return MainColor.Name.CompareTo(other.MainColor.Name);
+            }
+            return 0;
+        }
+
+        public void Dispose()
+        {
+
+        }
+
+        public bool MoveNext()
+        {
+            _currentIndex++;
+            return _currentIndex < 3;
+        }
+
+        public void Reset()
+        {
+            _currentIndex = -1;
+        }
+
+        public IEnumerator<object> GetEnumerator()
+        {
+            return this;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this;
         }
     }
 }

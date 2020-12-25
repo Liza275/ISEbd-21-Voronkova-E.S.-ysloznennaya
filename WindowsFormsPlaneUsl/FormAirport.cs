@@ -159,12 +159,12 @@ namespace WindowsFormsPlaneUsl
                 }
                 catch (AirportOverflowException ex)
                 {
-                    logger.Warn(ex, ex.Message);
+                    logger.Error(ex, ex.Message);
                     MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
-                    logger.Fatal(ex, ex.Message);
+                    logger.Error(ex, ex.Message);
                     MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -183,7 +183,7 @@ namespace WindowsFormsPlaneUsl
                 }
                 catch (Exception ex)
                 {
-                    logger.Fatal(ex, ex.Message);
+                    logger.Error(ex, ex.Message);
                     MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -192,36 +192,39 @@ namespace WindowsFormsPlaneUsl
 
         private void ЗагрузитьToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            try
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                airportCollection.LoadData(openFileDialog.FileName);
-                MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-                logger.Info("Загружено из файла " + openFileDialog.FileName);
-                ReloadLevels();
-                Draw();
-            }
-            catch (AirportOverflowException ex)
-            {
-                logger.Warn(ex, ex.Message);
-                MessageBox.Show(ex.Message, "Некорректный формат файла", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (FileNotFoundException ex)
-            {
-                logger.Error(ex, ex.Message);
-                MessageBox.Show(ex.Message, "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (FormatException ex)
-            {
-                logger.Error(ex, ex.Message);
-                MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                logger.Fatal(ex, ex.Message);
-                MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
-               MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    airportCollection.LoadData(openFileDialog.FileName);
+                    MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                    logger.Info("Загружено из файла " + openFileDialog.FileName);
+                    ReloadLevels();
+                    Draw();
+                }
+                catch (AirportOverflowException ex)
+                {
+                    logger.Error(ex, ex.Message);
+                    MessageBox.Show(ex.Message, "Некорректный формат файла", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (FileNotFoundException ex)
+                {
+                    logger.Error(ex, ex.Message);
+                    MessageBox.Show(ex.Message, "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (FormatException ex)
+                {
+                    logger.Error(ex, ex.Message);
+                    MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex, ex.Message);
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -258,6 +261,15 @@ namespace WindowsFormsPlaneUsl
                     MessageBox.Show("Не загрузили", "Результат",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+        private void ButtonSort_Click(object sender, EventArgs e)
+        {
+            if (listBoxAiports.SelectedIndex > -1)
+            {
+                airportCollection[listBoxAiports.SelectedItem.ToString()].Sort();
+                Draw();
+                logger.Info("Сортировка уровней");
             }
         }
     }
