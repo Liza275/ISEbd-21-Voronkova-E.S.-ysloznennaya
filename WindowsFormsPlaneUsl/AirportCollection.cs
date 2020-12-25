@@ -98,13 +98,13 @@ namespace WindowsFormsPlaneUsl
             return true;
         }
 
-        public bool LoadData(string filename)
+        public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
-            using (StreamReader sr = new StreamReader(filename, Encoding.UTF8))
+            using (StreamReader sr = new StreamReader(filename, System.Text.Encoding.UTF8))
             {
                 string line = sr.ReadLine();
                 if (line.Contains("AirportCollection"))
@@ -113,7 +113,7 @@ namespace WindowsFormsPlaneUsl
                 }
                 else
                 {
-                    return false;
+                    throw new FormatException();
                 }
                 Plane plane = null;
                 string key = string.Empty;
@@ -122,7 +122,7 @@ namespace WindowsFormsPlaneUsl
                     if (line.Contains("Airport"))
                     {
                         key = line.Split(separator)[1];
-                        parkingStages.Add(key, new Airport<Plane, IDrawingElements>(pictureWidth,
+                        parkingStages.Add(key, new Airport<Plane,IDrawingElements>(pictureWidth,
                         pictureHeight));
                         continue;
                     }
@@ -130,7 +130,7 @@ namespace WindowsFormsPlaneUsl
                     {
                         continue;
                     }
-                    if (line.Split(separator)[0] == "Warplane")
+                    if (line.Split(separator)[0] == "WarPlane")
                     {
                         plane = new Warplane(line.Split(separator)[1]);
                     }
@@ -141,19 +141,14 @@ namespace WindowsFormsPlaneUsl
                     var result = parkingStages[key] + plane;
                     if (!result)
                     {
-                        return false;
+                        throw new AirportOverflowException();
                     }
                 }
             }
-            return true;
         }
 
         public bool SaveAirport(string filename, string key)
         {
-            if (File.Exists(filename))
-            {
-                File.Delete(filename);
-            }
             if (!parkingStages.ContainsKey(key))
             {
                 return false;
@@ -225,6 +220,5 @@ namespace WindowsFormsPlaneUsl
             }
             return true;
         }
-
     }
 }
