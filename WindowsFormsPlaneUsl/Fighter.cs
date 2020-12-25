@@ -85,5 +85,6 @@ namespace WindowsFormsPlaneUsl
         {
             return $"{base.ToString()}{separator}{DopColor.Name}{separator}{isEngines}{separator}{isRockets}{separator}{db.Digit}{separator}{db.BombsForm}";
         }
+
     }
 }

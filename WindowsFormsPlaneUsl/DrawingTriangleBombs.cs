@@ -108,6 +108,7 @@ namespace WindowsFormsPlaneUsl
             g.FillPolygon(dopBrush, downRocket2);
         }
 
+
         public void drawDopElements(Graphics g, Color DopColor, float _startPosX, float _startPosY)
         {
             Brush dopBrush = new SolidBrush(DopColor);
@@ -122,7 +123,6 @@ namespace WindowsFormsPlaneUsl
                 case BombsEnum.Two:
                     drawTwoBombs(g, DopColor, _startPosX, _startPosY);
                     break;
-
             }
         }
     }

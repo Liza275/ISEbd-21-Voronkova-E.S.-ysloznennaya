@@ -41,11 +41,12 @@ namespace WindowsFormsPlaneUsl
             }
         }
 
+
         public static bool operator +(Airport<T, R> p, T plane)
         {
             if (p._places.Count >= p._maxCount)
             {
-                return false;
+                throw new AirportOverflowException();
             }
             p._places.Add(plane);
             return true;
@@ -53,9 +54,9 @@ namespace WindowsFormsPlaneUsl
 
         public static T operator -(Airport<T, R> p, int index)
         {
-            if (index < -1 || index > p._places.Count)
+            if (index < -1 || index >= p._places.Count)
             {
-                return null;
+                throw new AirportNotFoundException(index);
             }
             T plane = p._places[index];
             p._places.RemoveAt(index);

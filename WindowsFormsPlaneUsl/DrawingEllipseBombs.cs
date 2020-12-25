@@ -80,7 +80,6 @@ namespace WindowsFormsPlaneUsl
                 case BombsEnum.Two:
                     drawTwoBombs(g, DopColor, _startPosX, _startPosY);
                     break;
-
             }
         }
     }
